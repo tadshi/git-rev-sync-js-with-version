@@ -130,6 +130,14 @@ function tag(markDirty) {
   return _command('git', ['describe', '--always', '--tag', '--abbrev=0']);
 }
 
+function version(showLong) {
+	if (showLong) {
+		return _command('git', ['describe', '--always', '--long']);
+	}
+
+	return _command('git', ['describe', '--always', '--abbrev=0']);
+}
+
 function tagFirstParent(markDirty) {
     if (markDirty) {
         return _command('git', ['describe', '--always', '--tag', '--dirty', '--abbrev=0', '--first-parent']);
@@ -189,5 +197,6 @@ module.exports = {
   remoteUrl: remoteUrl,
   short: short,
   tag: tag,
-  tagFirstParent: tagFirstParent
+  tagFirstParent: tagFirstParent,
+  version: version
 };
